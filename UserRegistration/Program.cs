@@ -14,7 +14,6 @@ namespace UserRegistration
             phoneNumber = GetUserInformation.PhoneNumber();
             passWord = GetUserInformation.PassWord();
 
-
         }
     }
 }

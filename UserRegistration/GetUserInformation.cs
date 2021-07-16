@@ -104,6 +104,28 @@ namespace UserRegistration
             Console.WriteLine("\nYour PhoneNUmber is {0}", phoneNumber);
             return phoneNumber;
         }
+        public static string PassWord()
+        {   //User input
+            Console.WriteLine("\nEnter password : ");
+            string passWord;
 
+            //Defining Regex for password with 8 length
+            Regex passWordRegex = new Regex(@"[a-zA-z0-9]{8,}$");
+
+            while (true)
+            {
+                passWord = Console.ReadLine();
+                if (passWordRegex.IsMatch(passWord))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("\nPlease Enter Valid passWord");
+                }
+            }
+            Console.WriteLine("\nYour passWord is {0}", passWord);
+            return passWord;
+        }
     }
 }
