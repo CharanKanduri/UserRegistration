@@ -7,126 +7,148 @@ using System.Text.RegularExpressions;
 
 namespace UserRegistration
 {
-    class GetUserInformation
+    public class GetUserInformation
     {
-        public static string FirstName()
-        {   //User input
-            Console.WriteLine("\nEnter the First Name : ");
-            string firstName;
 
+        public static void GetDetails()
+        {
+            string firstName;
+            string secondName;
+            string eMail;
+            string phoneNumber;
+            string passWord;
+            Console.WriteLine("\nEnter the First Name : ");
+            firstName = Console.ReadLine();
+            FirstName(firstName);
+
+            Console.WriteLine("\nEnter the Second Name : ");
+            secondName= Console.ReadLine();
+            SecondName(secondName);
+
+            Console.WriteLine("\nEnter the E-Mail ID : ");
+            eMail = Console.ReadLine();
+            EMail(eMail);
+
+            Console.WriteLine("\nEnter Phone number along with country code : ");
+            phoneNumber = Console.ReadLine();
+            PhoneNumber(phoneNumber);
+
+            Console.WriteLine("\nEnter password : ");
+            passWord = Console.ReadLine();
+            PassWord(passWord);
+
+        }
+
+        public static string FirstName(string firstName)
+        { 
             //Defining Regex for user's FirstName
             Regex regex = new Regex(@"^[A-Z][a-z]{2,}$");
 
             while (true)
             {
-                firstName = Console.ReadLine();
+                
                 if (regex.IsMatch(firstName))
                 {
-                    break;
+                    return firstName;
                 }
                 else 
                 {
                     Console.WriteLine("\nPlease Enter Valid FirstName");
+                    return null;
                 }
             }
-            Console.WriteLine("\nYour First Name is {0}", firstName);
-            return firstName;
+           
+            
         }
 
-        public static string SecondName()
-        {   //User input
-            Console.WriteLine("\nEnter the Second Name : ");
-            string secondName;
+        public static string SecondName(string secondName)
+        {  
+            
 
             //Defining Regex for user's FirstName
             Regex regex = new Regex(@"^[A-Z][a-z]{2,}$");
 
             while (true)
             {
-                secondName = Console.ReadLine();
+                
                 if (regex.IsMatch(secondName))
                 {
-                    break;
+                    return secondName;
                 }
                 else
                 {
                     Console.WriteLine("\nPlease Enter Valid FirstName");
+                    return null;
                 }
             }
-            Console.WriteLine("\nYour Second Name is {0}", secondName);
-            return secondName;
+            
+            
         }
 
-        public static string EMail()
-        {   //User input
-            Console.WriteLine("\nEnter the E-Mail ID : ");
-            string eMail;
+        public static string EMail(string eMail)
+        {  
+            
 
             //Defining Regex for user's FirstName
             Regex eMailRegex = new Regex(@"^[a-zA-Z0-9]+([\.\+\-][a-zA-Z0-9]+)?@[a-zA-Z0-9-]+(\.[a-zA-Z]{2,}(\.[a-zA-Z]+)?)$");
 
             while (true)
             {
-                eMail = Console.ReadLine();
+                
                 if (eMailRegex.IsMatch(eMail))
                 {
-                    break;
+                    return eMail;
                 }
                 else
                 {
                     Console.WriteLine("\nPlease Enter Valid E-Mail ID");
+                    return null;
                 }
             }
-            Console.WriteLine("\nYour Second Name is {0}", eMail);
-            return eMail;
+            
         }
 
-        public static string PhoneNumber()
-        {   //User input
-            Console.WriteLine("\nEnter Phone number along with country code : ");
-            string phoneNumber;
-
+        public static string PhoneNumber(string phoneNumber)
+        {   
             //Defining Regex for Phonenumber
             Regex phoneNumberRegex = new Regex(@"^[0-9]+\s[0-9]{10}$");
 
             while (true)
             {
-                phoneNumber = Console.ReadLine();
+               
                 if (phoneNumberRegex.IsMatch(phoneNumber))
                 {
-                    break;
+                    return phoneNumber;
                 }
                 else
                 {
                     Console.WriteLine("\nPlease Enter Valid Phone Number");
+                    return null;
                 }
             }
-            Console.WriteLine("\nYour PhoneNUmber is {0}", phoneNumber);
-            return phoneNumber;
+           
+            
         }
-        public static string PassWord()
-        {   //User input
-            Console.WriteLine("\nEnter password : ");
-            string passWord;
-
-          
-
+        public static string PassWord(string passWord)
+        {  
+        
             //Defining Regex for password with 8 length and atleast one Uppercase and one digit RULE and one special Char RULE -IV
             Regex passWordRegex = new Regex(@"(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?!.*[<>`])(?=[^.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\]*[.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\][^.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\]*$).{8}$");
             while (true)
             {
-                passWord = Console.ReadLine();
+                
                 if (passWordRegex.IsMatch(passWord))
                 {
-                    break;
+                    return passWord;
                 }
                 else
                 {
                     Console.WriteLine("\nPlease Enter Valid passWord");
+                    return null;
                 }
             }
-            Console.WriteLine("\nYour passWord is {0}", passWord);
-            return passWord;
+            
+           
         }
     }
 }
