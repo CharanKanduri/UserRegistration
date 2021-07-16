@@ -109,8 +109,10 @@ namespace UserRegistration
             Console.WriteLine("\nEnter password : ");
             string passWord;
 
-            //Defining Regex for password with 8 length
-            Regex passWordRegex = new Regex(@"[a-zA-z0-9]{8,}$");
+          
+
+            //Defining Regex for password with 8 length and atleast one Uppercase RULE-II
+            Regex passWordRegex = new Regex(@"^(?=.*[A-Z]).{8,}$");
 
             while (true)
             {
