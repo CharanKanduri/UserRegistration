@@ -56,5 +56,29 @@ namespace UserRegistration
             Console.WriteLine("\nYour Second Name is {0}", secondName);
             return secondName;
         }
+
+        public static string EMail()
+        {   //User input
+            Console.WriteLine("\nEnter the E-Mail ID : ");
+            string eMail;
+
+            //Defining Regex for user's FirstName
+            Regex eMailRegex = new Regex(@"^[a-zA-Z0-9]+([\.\+\-][a-zA-Z0-9]+)?@[a-zA-Z0-9-]+(\.[a-zA-Z]{2,}(\.[a-zA-Z]+)?)$");
+
+            while (true)
+            {
+                eMail = Console.ReadLine();
+                if (eMailRegex.IsMatch(eMail))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("\nPlease Enter Valid E-Mail ID");
+                }
+            }
+            Console.WriteLine("\nYour Second Name is {0}", eMail);
+            return eMail;
+        }
     }
 }

@@ -6,10 +6,11 @@ namespace UserRegistration
     {
         static void Main(string[] args)
         {
-            string firstName, secondName;
+            string firstName, secondName,eMail;
             Console.WriteLine("Welcome to User Registration");
             firstName=GetUserInformation.FirstName();
             secondName=GetUserInformation.SecondName();
+            eMail = GetUserInformation.EMail();
         }
     }
 }
