@@ -111,8 +111,8 @@ namespace UserRegistration
 
           
 
-            //Defining Regex for password with 8 length and atleast one Uppercase RULE-II
-            Regex passWordRegex = new Regex(@"^(?=.*[A-Z]).{8,}$");
+            //Defining Regex for password with 8 length and atleast one Uppercase and one digit RULE-III
+            Regex passWordRegex = new Regex(@"^(?=.*[0-9])(?=.*[A-Z]).{8,}$");
 
             while (true)
             {
