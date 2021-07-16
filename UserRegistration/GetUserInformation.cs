@@ -80,5 +80,30 @@ namespace UserRegistration
             Console.WriteLine("\nYour Second Name is {0}", eMail);
             return eMail;
         }
+
+        public static string PhoneNumber()
+        {   //User input
+            Console.WriteLine("\nEnter Phone number along with country code : ");
+            string phoneNumber;
+
+            //Defining Regex for Phonenumber
+            Regex phoneNumberRegex = new Regex(@"^[0-9]+\s[0-9]{10}$");
+
+            while (true)
+            {
+                phoneNumber = Console.ReadLine();
+                if (phoneNumberRegex.IsMatch(phoneNumber))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("\nPlease Enter Valid Phone Number");
+                }
+            }
+            Console.WriteLine("\nYour PhoneNUmber is {0}", phoneNumber);
+            return phoneNumber;
+        }
+
     }
 }
