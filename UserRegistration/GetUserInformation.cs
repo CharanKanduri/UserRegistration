@@ -10,145 +10,177 @@ namespace UserRegistration
     public class GetUserInformation
     {
 
-        public static void GetDetails()
+        public static string firstname;
+        public static string lastname;
+        public static string emails;
+        public static string phoneNumber;
+        private static string Password;
+        public static Regex regex = new Regex(@"^[A-Z][a-z]{2,}$");
+        public static Regex email = new Regex(@"^[a-zA-Z0-9]+([\.\+\-][a-zA-Z0-9]+)?@[a-zA-Z0-9]+(\.[a-zA-Z]{2,}(\.[a-zA-Z]+)?)$");
+        public static Regex phone = new Regex(@"^[0-9]+\s[0-9]{10}$");
+
+
+        public static void GetInfo()
         {
-            string firstName;
-            string secondName;
-            string eMail;
-            string phoneNumber;
-            string passWord;
-            Console.WriteLine("\nEnter the First Name : ");
-            firstName = Console.ReadLine();
-            FirstName(firstName);
 
-            Console.WriteLine("\nEnter the Second Name : ");
-            secondName= Console.ReadLine();
-            SecondName(secondName);
+            Console.WriteLine("\nEnter First Name starting with Caps(minimum 3 characters)");
+            firstname = Console.ReadLine();
+            GetFirstName(firstname);
 
-            Console.WriteLine("\nEnter the E-Mail ID : ");
-            eMail = Console.ReadLine();
-            EMail(eMail);
+            Console.WriteLine("\nEnter Last Name starting with Caps(minimum 3 characters)");
+            lastname = Console.ReadLine();
+            GetLastName(lastname);
 
-            Console.WriteLine("\nEnter Phone number along with country code : ");
+            Console.WriteLine("\nEnter Email Address");
+            emails = Console.ReadLine();
+            GetEmail(emails);
+
+            Console.WriteLine("\nEnter Phone Number in the form (COUNTRY CODE \"Space\" 10-digit PHONE NUMBER)");
             phoneNumber = Console.ReadLine();
-            PhoneNumber(phoneNumber);
+            GetPhoneNumber(phoneNumber);
 
-            Console.WriteLine("\nEnter password : ");
-            passWord = Console.ReadLine();
-            PassWord(passWord);
+
+            Console.WriteLine("\nEnter Password (minimum 8 characters)");
+            Password = Console.ReadLine();
+            GetPassword(Password);
+
+            Display();
+        }
+
+        public static void Display()
+        {
+            Console.WriteLine("\n***********Display User Details**********\n");
+            Console.WriteLine("Your First name is: {0}", firstname);
+            Console.WriteLine("Your Last name is: {0}", lastname);
+            Console.WriteLine("Your Email is: {0}", emails);
+            Console.WriteLine("Your Phone number is: {0}", phoneNumber);
+            Console.WriteLine("Your password is: {0}", Password);
 
         }
 
-        public static string FirstName(string firstName)
-        { 
-            //Defining Regex for user's FirstName
-            Regex regex = new Regex(@"^[A-Z][a-z]{2,}$");
-
-            while (true)
+        //Get First Name from user
+        public static string GetFirstName(string firstname)
+        {
+            try
             {
-                
-                if (regex.IsMatch(firstName))
+                if (firstname.Equals(""))
                 {
-                    return firstName;
+                    throw new CustomisedException(CustomisedException.ExceptionType.EMPTY_MESSAGE, "Please enter a Valid First Name!");
                 }
-                else 
+                if (regex.IsMatch(firstname))
                 {
-                    Console.WriteLine("\nPlease Enter Valid FirstName");
-                    return null;
-                }
-            }
-           
-            
-        }
-
-        public static string SecondName(string secondName)
-        {  
-            
-
-            //Defining Regex for user's FirstName
-            Regex regex = new Regex(@"^[A-Z][a-z]{2,}$");
-
-            while (true)
-            {
-                
-                if (regex.IsMatch(secondName))
-                {
-                    return secondName;
+                    return firstname;
                 }
                 else
                 {
-                    Console.WriteLine("\nPlease Enter Valid FirstName");
-                    return null;
+                    throw new CustomisedException(CustomisedException.ExceptionType.INVALID_MESSAGE, "Please enter a Valid First Name!");
                 }
             }
-            
-            
-        }
-
-        public static string EMail(string eMail)
-        {  
-            
-
-            //Defining Regex for user's FirstName
-            Regex eMailRegex = new Regex(@"^[a-zA-Z0-9]+([\.\+\-][a-zA-Z0-9]+)?@[a-zA-Z0-9-]+(\.[a-zA-Z]{2,}(\.[a-zA-Z]+)?)$");
-
-            while (true)
+            catch (NullReferenceException ex)
             {
-                
-                if (eMailRegex.IsMatch(eMail))
+                return ex.Message;
+            }
+
+        }
+        //Get Last Name from user
+        public static string GetLastName(string lastname)
+        {
+            try
+            {
+                if (lastname.Equals(""))
                 {
-                    return eMail;
+                    throw new CustomisedException(CustomisedException.ExceptionType.EMPTY_MESSAGE, "Please enter a Valid Last Name!");
+                }
+                if (regex.IsMatch(lastname))
+                {
+                    return lastname;
                 }
                 else
                 {
-                    Console.WriteLine("\nPlease Enter Valid E-Mail ID");
-                    return null;
+                    throw new CustomisedException(CustomisedException.ExceptionType.INVALID_MESSAGE, "Please enter a Valid Last Name!");
                 }
             }
-            
+            catch (NullReferenceException ex)
+            {
+                return ex.Message;
+            }
         }
 
-        public static string PhoneNumber(string phoneNumber)
-        {   
-            //Defining Regex for Phonenumber
-            Regex phoneNumberRegex = new Regex(@"^[0-9]+\s[0-9]{10}$");
-
-            while (true)
+        //Get Email from user
+        public static string GetEmail(string emails)
+        {
+            try
             {
-               
-                if (phoneNumberRegex.IsMatch(phoneNumber))
+                if (emails.Equals(""))
+                {
+                    throw new CustomisedException(CustomisedException.ExceptionType.EMPTY_MESSAGE, "Please enter a Valid Email!");
+                }
+                if (email.IsMatch(emails))
+                {
+                    return emails;
+                }
+                else
+                {
+                    throw new CustomisedException(CustomisedException.ExceptionType.INVALID_MESSAGE, "Please enter a Valid Email!");
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                return ex.Message;
+            }
+
+        }
+        //Get Phone Number from user
+        public static string GetPhoneNumber(string phoneNumber)
+        {
+            try
+            {
+                if (phoneNumber.Equals(""))
+                {
+                    throw new CustomisedException(CustomisedException.ExceptionType.EMPTY_MESSAGE, "Please enter a Phone Number!");
+                }
+                if (phone.IsMatch(phoneNumber))
                 {
                     return phoneNumber;
                 }
                 else
                 {
-                    Console.WriteLine("\nPlease Enter Valid Phone Number");
-                    return null;
+                    throw new CustomisedException(CustomisedException.ExceptionType.EMPTY_MESSAGE, "Please enter a Phone Number!");
                 }
+
             }
-           
-            
-        }
-        public static string PassWord(string passWord)
-        {  
-        
-            //Defining Regex for password with 8 length and atleast one Uppercase and one digit RULE and one special Char RULE -IV
-            Regex passWordRegex = new Regex(@"(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?!.*[<>`])(?=[^.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\]*[.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\][^.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\]*$).{8}$");
-            while (true)
+            catch (NullReferenceException ex)
             {
-                
-                if (passWordRegex.IsMatch(passWord))
+                return ex.Message;
+            }
+
+
+        }
+        //Get PassWord from user
+        public static string GetPassword(string Password)
+        {
+            string pattern = @"(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?!.*[<>`])(?=[^.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\]*[.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\][^.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\]*$).{8,}$";
+            Regex passWord = new Regex(pattern);
+            try
+            {
+                if (Password.Equals(""))
                 {
-                    return passWord;
+                    throw new CustomisedException(CustomisedException.ExceptionType.EMPTY_MESSAGE, "Please enter a Password!");
+                }
+                if (passWord.IsMatch(Password))
+                {
+                    return Password;
                 }
                 else
                 {
-                    Console.WriteLine("\nPlease Enter Valid passWord");
-                    return null;
+                    throw new CustomisedException(CustomisedException.ExceptionType.EMPTY_MESSAGE, "Please enter a Password!");
                 }
             }
-            
-           
+            catch (NullReferenceException ex)
+            {
+                return ex.Message;
+            }
+
         }
     }
 }
