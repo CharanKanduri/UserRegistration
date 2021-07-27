@@ -11,7 +11,7 @@ namespace UserRegistration
         ExceptionType exceptionType;
         public enum ExceptionType
         {
-            EMPTY_MESSAGE, NULL_MESSAGE, INVALID_MESSAGE
+            EMPTY_MESSAGE, NULL_MESSAGE, INVALID_MESSAGE, NVALID_FIELD, METHOD_NOT_FOUND
         }
         public CustomisedException(ExceptionType exception, string message) : base(message)
         {
